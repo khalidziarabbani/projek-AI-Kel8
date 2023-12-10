@@ -11,3 +11,9 @@ Perkembangan teknologi informasi dan kecerdasan buatan telah memungkinkan implem
 
 ## Paper
 [Implementasi Propositional Logic dalam Membantu Penyelesaian Game Minesweeper](https://github.com/khalidziarabbani/projek-AI-Kel8/blob/main/PAPER.pdf)
+
+### Highlights:
+- 🤖 Penerapan kecerdasan buatan dalam Minesweeper.
+- 🧠 Logika proposisi untuk meningkatkan keputusan AI.
+- 🎮 Antarmuka grafis interaktif dengan library pygame.
+- 🌈 Fitur "Show Inference" untuk visualisasi proses berpikir AI.
