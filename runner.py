@@ -186,6 +186,28 @@ while True:
     buttonRect.center = safesMinesButton.center
     pygame.draw.rect(screen, BLUE, safesMinesButton)
     screen.blit(buttonText, buttonRect)
+    
+    # 10 X 10 button
+    resize10x10Button = pygame.Rect(
+        (2 / 3) * width + BOARD_PADDING, BOARD_PADDING + 200,
+        (width / 3) - BOARD_PADDING * 2, 50
+    )
+    buttonText = mediumFont.render("10 X 10", True, WHITE)
+    buttonRect = buttonText.get_rect()
+    buttonRect.center = resize10x10Button.center
+    pygame.draw.rect(screen, BLUE, resize10x10Button)
+    screen.blit(buttonText, buttonRect)
+    
+    # 16 X 16 button
+    resize16x16Button = pygame.Rect(
+        (2 / 3) * width + BOARD_PADDING, BOARD_PADDING + 300,
+        (width / 3) - BOARD_PADDING * 2, 50
+    )
+    buttonText = mediumFont.render("16 X 16", True, WHITE)
+    buttonRect = buttonText.get_rect()
+    buttonRect.center = resize16x16Button.center
+    pygame.draw.rect(screen, BLUE, resize16x16Button)
+    screen.blit(buttonText, buttonRect)
 
     move = None
 
@@ -197,8 +219,6 @@ while True:
     textRect = text.get_rect()
     textRect.center = ((5 / 6) * width, BOARD_PADDING + 400)
     screen.blit(text, textRect)
-
-    #screen.blit(gopal, ((2 / 3) * width + BOARD_PADDING, BOARD_PADDING + 200))
 
     # Check for a right-click to toggle flagging
     if right == 1 and not lost:
@@ -215,8 +235,33 @@ while True:
     elif left == 1:
         mouse = pygame.mouse.get_pos()
 
+        # Resize game state
+        if resize10x10Button.collidepoint(mouse):
+            HEIGHT = 10
+            WIDTH = 10
+            MINES = 15
+            game = Minesweeper(height=HEIGHT, width=WIDTH, mines=MINES)
+            ai = MinesweeperAI(height=HEIGHT, width=WIDTH)
+            revealed = set()
+            flags = set()
+            lost = False
+            mine_detonated = None
+            continue
+        
+        elif resize16x16Button.collidepoint(mouse):
+            HEIGHT = 16
+            WIDTH = 16
+            MINES = 30
+            game = Minesweeper(height=HEIGHT, width=WIDTH, mines=MINES)
+            ai = MinesweeperAI(height=HEIGHT, width=WIDTH)
+            revealed = set()
+            flags = set()
+            lost = False
+            mine_detonated = None
+            continue
+        
         # Reset game state
-        if resetButton.collidepoint(mouse):
+        elif resetButton.collidepoint(mouse):
             game = Minesweeper(height=HEIGHT, width=WIDTH, mines=MINES)
             ai = MinesweeperAI(height=HEIGHT, width=WIDTH)
             revealed = set()
